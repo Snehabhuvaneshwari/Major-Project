@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Robots</title>
+    <link rel="stylesheet" href="style.css">
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a href='website.html'>Robots</a>
+            </div>
+            <nav>
+                <ul id='MenuItems'>
+                    <li><a href="Home-page.html">HOME</a>
+                    <li><a href='aboutus.html'>About Us</a></li>
+                    <li><button class='loginbtn' onclick="document.getElementById('login-form').style.display='block'" style="width:auto;" onclick="home()">Login</button></li>
+                </ul>
+            </nav>
+        </div>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button type='button'onclick='login()'class='toggle-btn'>Log In</button>
+                    <button type='button'onclick='register()'class='toggle-btn'>Register</button>
+                </div>
+                <form id='login' class='input-group-login'>
+                    <input type='text'class='input-field'placeholder='Email Id' id="email" required >
+            <input type='password'class='input-field'placeholder='Enter Password' id="password" required>
+            <input type='checkbox'class='check-box'><span>Remember Password</span>
+            <button type='submit'class='submit-btn'>Log in</button>
+         </form>
+         <form id='register' class='input-group-register'>
+             <input type='text' id='fristname'class='input-field'placeholder='First Name' required>
+             <input type='text' id='lastname'class='input-field'placeholder='Last Name ' required>
+             <input type='email' id='Email'class='input-field'placeholder='Email Id' required>
+             <input type='password' id='password'class='input-field'placeholder='Enter Password' required>
+             <input type='password' id ='password'class='input-field'placeholder='Confirm Password'  required>
+             <input type='checkbox' class='check-box'><span>I agree to the terms and conditions</span>
+                    <button type='submit' id="submit" class='submit-btn'>Register</button>
+             </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var x=document.getElementById('login');
+        var y=document.getElementById('register');
+        var z=document.getElementById('btn');
+        function register()
+        {
+            x.style.left='-400px';
+            y.style.left='50px';
+            z.style.left='110px';
+        }
+        function login()
+        {
+            x.style.left='50px';
+            y.style.left='450px';
+            z.style.left='0px';
+        }
+    </script>
+    <script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import  {getDatabase ,set,ref,push,child} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9JRk-ZCe9ai63cjzApXNlxFFLGvIAvg4",
+      authDomain: "robotics-83800.firebaseapp.com",
+      projectId: "robotics-83800",
+      storageBucket: "robotics-83800.appspot.com",
+      messagingSenderId: "726469489560",
+      appId: "1:726469489560:web:7bb833c032e9b527ba71ed"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Realtime Database and get a reference to the service
+    const database = getDatabase(app);
+
+    sumbit.addEventListener('click',(e)=>{
+        var fristname=document.getElementById('fristname').value;
+        var lastname=document.getElementById('lastname').value;
+        var email=document.getElementById("Email").value;
+        var password=document.getElementById("password").value;
+
+        const userId=push(child(ref(database),'users')).key;
+        set(ref(database, 'users/' + userId), {
+        fristname: fristname,
+        lastname:lastname,
+        Email: email,
+        password: password,
+       });
+       alert(saved);
+    });
+
+</script>
